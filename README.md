@@ -5,7 +5,7 @@
 </a>
 
 <div align="center">
-  <strong>Create and modify PDF documents in any JavaScript environment.</strong>
+  <strong>Create and modify PDF documents in any JavaScript environment And Save with password.</strong>
 </div>
 <div align="center">
   Designed to work in any modern JavaScript runtime. Tested in Node, Browser, Deno, and React Native environments.
@@ -86,7 +86,7 @@
 - [License](#license)
 
 ## Features
-
+- Add password/encrypted file pdf
 - Create new PDFs
 - Modify existing PDFs
 - Create forms
@@ -111,9 +111,9 @@
 
 ## Motivation
 
-`pdf-lib` was created to address the JavaScript ecosystem's lack of robust support for PDF manipulation (especially for PDF _modification_).
+'pdf-lib-patch' was created to address the JavaScript ecosystem's lack of robust support for PDF manipulation (especially for PDF _modification_).
 
-Two of `pdf-lib`'s distinguishing features are:
+Two of 'pdf-lib-patch''s distinguishing features are:
 
 1. Supporting modification (editing) of existing documents.
 2. Working in all JavaScript environments - not just in Node or the Browser.
@@ -130,7 +130,7 @@ _This example produces [this PDF](assets/pdfs/examples/create_document.pdf)._
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib-patch'
 
 // Create a new PDFDocument
 const pdfDoc = await PDFDocument.create()
@@ -154,6 +154,13 @@ page.drawText('Creating PDFs in JavaScript is awesome!', {
   color: rgb(0, 0.53, 0.71),
 })
 
+// Add password to file or you can ignore it
+pdfDoc.encrypt({
+        userPassword: 'test',
+        ownerPassword: 'test',
+        permissions: { modifying: true },
+})
+
 // Serialize the PDFDocument to bytes (a Uint8Array)
 const pdfBytes = await pdfDoc.save()
 
@@ -171,7 +178,7 @@ _This example produces [this PDF](assets/pdfs/examples/modify_document.pdf)_ (wh
 
 <!-- prettier-ignore -->
 ```js
-import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib-patch';
 
 // This should be a Uint8Array or ArrayBuffer
 // This data can be obtained in a number of different ways
@@ -202,6 +209,12 @@ firstPage.drawText('This text was added with JavaScript!', {
   rotate: degrees(-45),
 })
 
+// Add password to file or you can ignore it
+pdfDoc.encrypt({
+        userPassword: 'test',
+        ownerPassword: 'test',
+        permissions: { modifying: true },
+})
 
 // Serialize the PDFDocument to bytes (a Uint8Array)
 const pdfBytes = await pdfDoc.save()
@@ -222,7 +235,7 @@ _This example produces [this PDF](assets/pdfs/examples/create_form.pdf)._
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // Create a new PDFDocument
 const pdfDoc = await PDFDocument.create()
@@ -300,7 +313,12 @@ personField.addToPage(page, { x: 55, y: 70 })
 
 // Just saying...
 page.drawText(`* Pluto should be a planet too!`, { x: 15, y: 15, size: 15 })
-
+// Add password to file or you can ignore it
+pdfDoc.encrypt({
+        userPassword: 'test',
+        ownerPassword: 'test',
+        permissions: { modifying: true },
+})
 // Serialize the PDFDocument to bytes (a Uint8Array)
 const pdfBytes = await pdfDoc.save()
 
@@ -320,7 +338,7 @@ _This example produces [this PDF](assets/pdfs/examples/fill_form.pdf)_ (when [th
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // These should be Uint8Arrays or ArrayBuffers
 // This data can be obtained in a number of different ways
@@ -411,7 +429,12 @@ traitsField.setText(
 
 // Fill in the treasure field
 treasureField.setText(['• Gold coins', '• Treasure chests'].join('\n'))
-
+// Add password to file or you can ignore it
+pdfDoc.encrypt({
+        userPassword: 'test',
+        ownerPassword: 'test',
+        permissions: { modifying: true },
+})
 // Serialize the PDFDocument to bytes (a Uint8Array)
 const pdfBytes = await pdfDoc.save()
 
@@ -429,7 +452,7 @@ _This example produces [this PDF](assets/pdfs/examples/flatten_form.pdf)_ (when 
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // This should be a Uint8Array or ArrayBuffer
 // This data can be obtained in a number of different ways
@@ -477,7 +500,7 @@ _This example produces [this PDF](assets/pdfs/examples/copy_pages.pdf)_ (when [t
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // Create a new PDFDocument
 const pdfDoc = await PDFDocument.create()
@@ -522,7 +545,7 @@ _This example produces [this PDF](assets/pdfs/examples/embed_png_and_jpeg_images
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // These should be Uint8Arrays or ArrayBuffers
 // This data can be obtained in a number of different ways
@@ -580,7 +603,7 @@ _This example produces [this PDF](assets/pdfs/examples/embed_pdf_pages.pdf)_ (wh
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // These should be Uint8Arrays or ArrayBuffers
 // This data can be obtained in a number of different ways
@@ -642,7 +665,7 @@ const pdfBytes = await pdfDoc.save()
 
 ### Embed Font and Measure Text
 
-`pdf-lib` relies on a sister module to support embedding custom fonts: [`@pdf-lib/fontkit`](https://www.npmjs.com/package/@pdf-lib/fontkit). You must add the `@pdf-lib/fontkit` module to your project and register it using `pdfDoc.registerFontkit(...)` before embedding custom fonts.
+'pdf-lib-patch' relies on a sister module to support embedding custom fonts: [`@pdf-lib/fontkit`](https://www.npmjs.com/package/@pdf-lib/fontkit). You must add the `@pdf-lib/fontkit` module to your project and register it using `pdfDoc.registerFontkit(...)` before embedding custom fonts.
 
 > **[See below for detailed installation instructions on installing `@pdf-lib/fontkit` as a UMD or NPM module.](#fontkit-installation)**
 
@@ -652,7 +675,7 @@ _This example produces [this PDF](assets/pdfs/examples/embed_font_and_measure_te
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument, rgb } from 'pdf-lib'
+import { PDFDocument, rgb } from 'pdf-lib-patch'
 import fontkit from '@pdf-lib/fontkit'
 
 // This should be a Uint8Array or ArrayBuffer
@@ -715,7 +738,7 @@ _This example produces [this PDF](assets/pdfs/examples/add_attachments.pdf)_ (wh
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // These should be Uint8Arrays or ArrayBuffers
 // This data can be obtained in a number of different ways
@@ -764,7 +787,7 @@ _This example produces [this PDF](assets/pdfs/examples/set_document_metadata.pdf
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument, StandardFonts } from 'pdf-lib'
+import { PDFDocument, StandardFonts } from 'pdf-lib-patch'
 
 // Create a new PDFDocument
 const pdfDoc = await PDFDocument.create()
@@ -804,7 +827,7 @@ const pdfBytes = await pdfDoc.save()
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // This should be a Uint8Array or ArrayBuffer
 // This data can be obtained in a number of different ways
@@ -853,7 +876,7 @@ import {
   PrintScaling,
   Duplex,
   PDFName,
-} from 'pdf-lib'
+} from 'pdf-lib-patch'
 
 // Create a new PDFDocument
 const pdfDoc = await PDFDocument.create()
@@ -912,7 +935,7 @@ const pdfBytes = await pdfDoc.save()
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 // This should be a Uint8Array or ArrayBuffer
 // This data can be obtained in a number of different ways
@@ -966,7 +989,7 @@ _This example produces [this PDF](assets/pdfs/examples/draw_svg_paths.pdf)_.
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument, rgb } from 'pdf-lib'
+import { PDFDocument, rgb } from 'pdf-lib-patch'
 
 // SVG path for a wavy line
 const svgPath =
@@ -1006,7 +1029,7 @@ const pdfBytes = await pdfDoc.save()
 
 ## Deno Usage
 
-`pdf-lib` fully supports the exciting new [Deno](https://deno.land/) runtime! All of the [usage examples](#usage-examples) work in Deno. The only thing you need to do is change the imports for `pdf-lib` and `@pdf-lib/fontkit` to use the [Skypack](https://www.skypack.dev/) CDN, because Deno requires all modules to be referenced via URLs.
+'pdf-lib-patch' fully supports the exciting new [Deno](https://deno.land/) runtime! All of the [usage examples](#usage-examples) work in Deno. The only thing you need to do is change the imports for 'pdf-lib-patch' and `@pdf-lib/fontkit` to use the [Skypack](https://www.skypack.dev/) CDN, because Deno requires all modules to be referenced via URLs.
 
 > **See also [How to Create and Modify PDF Files in Deno With pdf-lib](https://medium.com/swlh/how-to-create-and-modify-pdf-files-in-deno-ffaad7099b0?source=friends_link&sk=3da183bb776d059df428eaea52102f19)**
 
@@ -1107,14 +1130,14 @@ The resulting `out.pdf` file will look like [this PDF](assets/pdfs/examples/embe
 
 ## Complete Examples
 
-The [usage examples](#usage-examples) provide code that is brief and to the point, demonstrating the different features of `pdf-lib`. You can find complete working examples in the [`apps/`](apps/) directory. These apps are used to do manual testing of `pdf-lib` before every release (in addition to the [automated tests](tests/)).
+The [usage examples](#usage-examples) provide code that is brief and to the point, demonstrating the different features of 'pdf-lib-patch'. You can find complete working examples in the [`apps/`](apps/) directory. These apps are used to do manual testing of 'pdf-lib-patch' before every release (in addition to the [automated tests](tests/)).
 
 There are currently four apps:
 
-- [**`node`**](apps/node/) - contains [tests](apps/node/tests/) for `pdf-lib` in Node environments. These tests are a handy reference when trying to save/load PDFs, fonts, or images with `pdf-lib` from the filesystem. They also allow you to quickly open your PDFs in different viewers (Acrobat, Preview, Foxit, Chrome, Firefox, etc...) to ensure compatibility.
-- [**`web`**](apps/web/) - contains [tests](apps/web/) for `pdf-lib` in browser environments. These tests are a handy reference when trying to save/load PDFs, fonts, or images with `pdf-lib` in a browser environment.
-- [**`rn`**](apps/rn) - contains [tests](apps/rn/src/tests/) for `pdf-lib` in React Native environments. These tests are a handy reference when trying to save/load PDFs, fonts, or images with `pdf-lib` in a React Native environment.
-- [**`deno`**](apps/deno) - contains [tests](apps/deno/tests/) for `pdf-lib` in Deno environments. These tests are a handy reference when trying to save/load PDFs, fonts, or images with `pdf-lib` from the filesystem.
+- [**`node`**](apps/node/) - contains [tests](apps/node/tests/) for 'pdf-lib-patch' in Node environments. These tests are a handy reference when trying to save/load PDFs, fonts, or images with 'pdf-lib-patch' from the filesystem. They also allow you to quickly open your PDFs in different viewers (Acrobat, Preview, Foxit, Chrome, Firefox, etc...) to ensure compatibility.
+- [**`web`**](apps/web/) - contains [tests](apps/web/) for 'pdf-lib-patch' in browser environments. These tests are a handy reference when trying to save/load PDFs, fonts, or images with 'pdf-lib-patch' in a browser environment.
+- [**`rn`**](apps/rn) - contains [tests](apps/rn/src/tests/) for 'pdf-lib-patch' in React Native environments. These tests are a handy reference when trying to save/load PDFs, fonts, or images with 'pdf-lib-patch' in a React Native environment.
+- [**`deno`**](apps/deno) - contains [tests](apps/deno/tests/) for 'pdf-lib-patch' in Deno environments. These tests are a handy reference when trying to save/load PDFs, fonts, or images with 'pdf-lib-patch' from the filesystem.
 
 ## Installation
 
@@ -1134,7 +1157,7 @@ This assumes you're using [npm](https://www.npmjs.com/) or [yarn](https://yarnpk
 
 ### UMD Module
 
-You can also download `pdf-lib` as a UMD module from [unpkg](https://unpkg.com/#/) or [jsDelivr](https://www.jsdelivr.com/). The UMD builds have been compiled to ES5, so they should work [in any modern browser](https://caniuse.com/#feat=es5). UMD builds are useful if you aren't using a package manager or module bundler. For example, you can use them directly in the `<script>` tag of an HTML page.
+You can also download 'pdf-lib-patch' as a UMD module from [unpkg](https://unpkg.com/#/) or [jsDelivr](https://www.jsdelivr.com/). The UMD builds have been compiled to ES5, so they should work [in any modern browser](https://caniuse.com/#feat=es5). UMD builds are useful if you aren't using a package manager or module bundler. For example, you can use them directly in the `<script>` tag of an HTML page.
 
 The following builds are available:
 
@@ -1148,11 +1171,11 @@ The following builds are available:
 > - https://unpkg.com/pdf-lib@1.4.0/dist/pdf-lib.min.js
 > - https://cdn.jsdelivr.net/npm/pdf-lib@1.4.0/dist/pdf-lib.min.js
 
-When using a UMD build, you will have access to a global `window.PDFLib` variable. This variable contains all of the classes and functions exported by `pdf-lib`. For example:
+When using a UMD build, you will have access to a global `window.PDFLib` variable. This variable contains all of the classes and functions exported by 'pdf-lib-patch'. For example:
 
 ```javascript
 // NPM module
-import { PDFDocument, rgb } from 'pdf-lib';
+import { PDFDocument, rgb } from 'pdf-lib-patch';
 
 // UMD module
 var PDFDocument = PDFLib.PDFDocument;
@@ -1161,9 +1184,9 @@ var rgb = PDFLib.rgb;
 
 ## Fontkit Installation
 
-`pdf-lib` relies upon a sister module to support embedding custom fonts: [`@pdf-lib/fontkit`](https://www.npmjs.com/package/@pdf-lib/fontkit). You must add the `@pdf-lib/fontkit` module to your project and register it using `pdfDoc.registerFontkit(...)` before embedding custom fonts (see the [font embedding example](#embed-font-and-measure-text)). This module is not included by default because not all users need it, and it increases bundle size.
+'pdf-lib-patch' relies upon a sister module to support embedding custom fonts: [`@pdf-lib/fontkit`](https://www.npmjs.com/package/@pdf-lib/fontkit). You must add the `@pdf-lib/fontkit` module to your project and register it using `pdfDoc.registerFontkit(...)` before embedding custom fonts (see the [font embedding example](#embed-font-and-measure-text)). This module is not included by default because not all users need it, and it increases bundle size.
 
-Installing this module is easy. Just like `pdf-lib` itself, `@pdf-lib/fontkit` can be installed with `npm`/`yarn` or as a UMD module.
+Installing this module is easy. Just like 'pdf-lib-patch' itself, `@pdf-lib/fontkit` can be installed with `npm`/`yarn` or as a UMD module.
 
 ### Fontkit NPM Module
 
@@ -1179,7 +1202,7 @@ To register the `fontkit` instance:
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 import fontkit from '@pdf-lib/fontkit'
 
 const pdfDoc = await PDFDocument.create()
@@ -1219,12 +1242,12 @@ located here: https://github.com/Hopding/pdf-lib-docs.
 
 When working with PDFs, you will frequently come across the terms "character encoding" and "font". If you have experience in web development, you may wonder why these are so prevalent. Aren't they just annoying details that you shouldn't need to worry about? Shouldn't PDF libraries and readers be able to handle all of this for you like web browsers can? Unfortunately, this is not the case. The nature of the PDF file format makes it very difficult to avoid thinking about character encodings and fonts when working with PDFs.
 
-`pdf-lib` does its best to simplify things for you. But it can't perform magic. This means you should be aware of the following:
+'pdf-lib-patch' does its best to simplify things for you. But it can't perform magic. This means you should be aware of the following:
 
 - **There are 14 standard fonts** defined in the PDF specification. They are as follows: _Times Roman_ (normal, bold, and italic), _Helvetica_ (normal, bold, and italic), _Courier_ (normal, bold, and italic), _ZapfDingbats_ (normal), and _Symbol_ (normal). These 14 fonts are guaranteed to be available in PDF readers. As such, you do not need to embed any font data if you wish to use one of these fonts. You can use a standard font like so:
   <!-- prettier-ignore -->
   ```js
-  import { PDFDocument, StandardFonts } from 'pdf-lib'
+  import { PDFDocument, StandardFonts } from 'pdf-lib-patch'
   const pdfDoc = await PDFDocument.create()
   const courierFont = await pdfDoc.embedFont(StandardFonts.Courier)
   const page = pdfDoc.addPage()
@@ -1236,7 +1259,7 @@ When working with PDFs, you will frequently come across the terms "character enc
 - **You can use characters outside the Latin alphabet** by embedding your own fonts. Embedding your own font requires to you load the font data (from a file or via a network request, for example) and pass it to the `embedFont` method. When you embed your own font, you can use any Unicode characters that it supports. This capability frees you from the limitations imposed by the standard fonts. Most PDF files use embedded fonts. You can embed and use a custom font like so ([see also](#embed-font-and-measure-text)):
   <!-- prettier-ignore -->
   ```js
-  import { PDFDocument } from 'pdf-lib'
+  import { PDFDocument } from 'pdf-lib-patch'
   import fontkit from '@pdf-lib/fontkit'
 
   const url = 'https://pdf-lib.js.org/assets/ubuntu/Ubuntu-R.ttf'
@@ -1272,7 +1295,7 @@ Note that subsetting does not work for all fonts. See https://github.com/Hopding
 
 ## Creating and Filling Forms
 
-`pdf-lib` can create, fill, and read PDF form fields. The following field types are supported:
+'pdf-lib-patch' can create, fill, and read PDF form fields. The following field types are supported:
 
 - [Buttons](https://pdf-lib.js.org/docs/api/classes/pdfbutton)
 - [Check Boxes](https://pdf-lib.js.org/docs/api/classes/pdfcheckbox)
@@ -1288,7 +1311,7 @@ See the [form creation](#create-form) and [form filling](#fill-form) usage examp
 You can use an embedded font when filling form fields as follows:
 
 ```js
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument } from 'pdf-lib-patch';
 import fontkit from '@pdf-lib/fontkit';
 
 // Fetch the PDF with form fields
@@ -1383,19 +1406,19 @@ Below are some of the most commonly used methods for reading and filling the afo
 
 ## Limitations
 
-- `pdf-lib` **can** extract the content of text fields (see [`PDFTextField.getText`](https://pdf-lib.js.org/docs/api/classes/pdftextfield#gettext)), but it **cannot** extract plain text on a page outside of a form field. This is a difficult feature to implement, but it is within the scope of this library and may be added to `pdf-lib` in the future. See
+- 'pdf-lib-patch' **can** extract the content of text fields (see [`PDFTextField.getText`](https://pdf-lib.js.org/docs/api/classes/pdftextfield#gettext)), but it **cannot** extract plain text on a page outside of a form field. This is a difficult feature to implement, but it is within the scope of this library and may be added to 'pdf-lib-patch' in the future. See
   [#93](https://github.com/Hopding/pdf-lib/issues/93),
   [#137](https://github.com/Hopding/pdf-lib/issues/137),
   [#177](https://github.com/Hopding/pdf-lib/issues/177),
   [#329](https://github.com/Hopding/pdf-lib/issues/329), and
   [#380](https://github.com/Hopding/pdf-lib/issues/380).
-- `pdf-lib` **can** remove and edit the content of text fields (see [`PDFTextField.setText`](https://pdf-lib.js.org/docs/api/classes/pdftextfield#settext)), but it does **not** provide APIs for removing or editing text on a page outside of a form field. This is also a difficult feature to implement, but is within the scope of `pdf-lib` and may be added in the future. See
+- 'pdf-lib-patch' **can** remove and edit the content of text fields (see [`PDFTextField.setText`](https://pdf-lib.js.org/docs/api/classes/pdftextfield#settext)), but it does **not** provide APIs for removing or editing text on a page outside of a form field. This is also a difficult feature to implement, but is within the scope of 'pdf-lib-patch' and may be added in the future. See
   [#93](https://github.com/Hopding/pdf-lib/issues/93),
   [#137](https://github.com/Hopding/pdf-lib/issues/137),
   [#177](https://github.com/Hopding/pdf-lib/issues/177),
   [#329](https://github.com/Hopding/pdf-lib/issues/329), and
   [#380](https://github.com/Hopding/pdf-lib/issues/380).
-- `pdf-lib` does **not** support the use of HTML or CSS when adding content to a PDF. Similarly, `pdf-lib` **cannot** embed HTML/CSS content into PDFs. As convenient as such a feature might be, it would be extremely difficult to implement and is far beyond the scope of this library. If this capability is something you need, consider using [Puppeteer](https://github.com/puppeteer/puppeteer).
+- 'pdf-lib-patch' does **not** support the use of HTML or CSS when adding content to a PDF. Similarly, 'pdf-lib-patch' **cannot** embed HTML/CSS content into PDFs. As convenient as such a feature might be, it would be extremely difficult to implement and is far beyond the scope of this library. If this capability is something you need, consider using [Puppeteer](https://github.com/puppeteer/puppeteer).
 
 ## Help and Discussion
 
@@ -1405,13 +1428,13 @@ See also [MAINTAINERSHIP.md#communication](docs/MAINTAINERSHIP.md#communication)
 
 ## Encryption Handling
 
-**`pdf-lib` does not currently support encrypted documents.** You should not use `pdf-lib` with encrypted documents. However, this is a feature that could be added to `pdf-lib`. Please [create an issue](https://github.com/Hopding/pdf-lib/issues/new) if you would find this feature helpful!
+**'pdf-lib-patch' does not currently support encrypted documents.** You should not use 'pdf-lib-patch' with encrypted documents. However, this is a feature that could be added to 'pdf-lib-patch'. Please [create an issue](https://github.com/Hopding/pdf-lib/issues/new) if you would find this feature helpful!
 
 When an encrypted document is passed to `PDFDocument.load(...)`, an error will be thrown:
 
 <!-- prettier-ignore -->
 ```js
-import { PDFDocument, EncryptedPDFError } from 'pdf-lib'
+import { PDFDocument, EncryptedPDFError } from 'pdf-lib-patch'
 
 const encryptedPdfBytes = ...
 
@@ -1422,7 +1445,7 @@ const pdfDoc = PDFDocument.load(encryptedPdfBytes)
 This default behavior is usually what you want. It allows you to easily detect if a given document is encrypted, and it prevents you from trying to modify it. However, if you really want to load the document, you can use the `{ ignoreEncryption: true }` option:
 
 ```js
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib-patch'
 
 const encryptedPdfBytes = ...
 
@@ -1436,7 +1459,7 @@ Note that **using this option does not decrypt the document**. This means that a
 
 ## Contributing
 
-We welcome contributions from the open source community! If you are interested in contributing to `pdf-lib`, please take a look at the [CONTRIBUTING.md](docs/CONTRIBUTING.md) file. It contains information to help you get `pdf-lib` setup and running on your machine. (We try to make this as simple and fast as possible! :rocket:)
+We welcome contributions from the open source community! If you are interested in contributing to 'pdf-lib-patch', please take a look at the [CONTRIBUTING.md](docs/CONTRIBUTING.md) file. It contains information to help you get 'pdf-lib-patch' setup and running on your machine. (We try to make this as simple and fast as possible! :rocket:)
 
 ## Maintainership
 
@@ -1455,9 +1478,9 @@ Check out [MAINTAINERSHIP.md](docs/MAINTAINERSHIP.md) for details on how this re
 
 ## Prior Art
 
-- [`pdfkit`](https://github.com/devongovett/pdfkit) is a PDF generation library for Node and the Browser. This library was immensely helpful as a reference and existence proof when creating `pdf-lib`. `pdfkit`'s code for [font embedding](src/core/embedders/CustomFontEmbedder.ts#L17-L21), [PNG embedding](src/core/embedders/PngEmbedder.ts#L7-L11), and [JPG embedding](src/core/embedders/JpegEmbedder.ts#L25-L29) was especially useful.
-- [`pdf.js`](https://github.com/mozilla/pdf.js) is a PDF rendering library for the Browser. This library was helpful as a reference when writing `pdf-lib`'s parser. Some of the code for stream decoding was [ported directly to TypeScript](src/core/streams) for use in `pdf-lib`.
-- [`pdfbox`](https://pdfbox.apache.org/) is a PDF generation and modification library written in Java. This library was an invaluable reference when implementing form creation and filling APIs for `pdf-lib`.
+- [`pdfkit`](https://github.com/devongovett/pdfkit) is a PDF generation library for Node and the Browser. This library was immensely helpful as a reference and existence proof when creating 'pdf-lib-patch'. `pdfkit`'s code for [font embedding](src/core/embedders/CustomFontEmbedder.ts#L17-L21), [PNG embedding](src/core/embedders/PngEmbedder.ts#L7-L11), and [JPG embedding](src/core/embedders/JpegEmbedder.ts#L25-L29) was especially useful.
+- [`pdf.js`](https://github.com/mozilla/pdf.js) is a PDF rendering library for the Browser. This library was helpful as a reference when writing 'pdf-lib-patch''s parser. Some of the code for stream decoding was [ported directly to TypeScript](src/core/streams) for use in 'pdf-lib-patch'.
+- [`pdfbox`](https://pdfbox.apache.org/) is a PDF generation and modification library written in Java. This library was an invaluable reference when implementing form creation and filling APIs for 'pdf-lib-patch'.
 - [`jspdf`](https://github.com/MrRio/jsPDF) is a PDF generation library for the browser.
 - [`pdfmake`](https://github.com/bpampuch/pdfmake) is a PDF generation library for the browser.
 - [`hummus`](https://github.com/galkahana/HummusJS) is a PDF generation and modification library for Node environments. `hummus` is a Node wrapper around a [C++ library](https://github.com/galkahana/PDF-Writer), so it doesn't work in many JavaScript environments - like the Browser or React Native.
@@ -1484,9 +1507,9 @@ $ git push --force
 
 ### Why Should I Care?
 
-If you're a user of `pdf-lib`, you shouldn't care! Just keep on using `pdf-lib` like normal 😃 ✨!
+If you're a user of 'pdf-lib-patch', you shouldn't care! Just keep on using 'pdf-lib-patch' like normal 😃 ✨!
 
-If you are a `pdf-lib` developer (meaning you've forked `pdf-lib` and/or have an open PR) then this does impact you. If you forked or cloned the repo prior to 8/30/2021 then your fork's git history is out of sync with this repo's `master` branch. Unfortunately, this will likely be a headache for you to deal with. Sorry! We didn't want to rewrite the history, but there really was no alternative.
+If you are a 'pdf-lib-patch' developer (meaning you've forked 'pdf-lib-patch' and/or have an open PR) then this does impact you. If you forked or cloned the repo prior to 8/30/2021 then your fork's git history is out of sync with this repo's `master` branch. Unfortunately, this will likely be a headache for you to deal with. Sorry! We didn't want to rewrite the history, but there really was no alternative.
 
 It's important to note that pdf-lib's _source code_ has not changed at all. It's exactly the same as it was before the git history rewrite. The repo still has the exact same number of commits (and even the same commit contents, except for the commit that added `pdf_specification.pdf`). What has changed are the SHAs of those commits.
 
