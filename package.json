@@ -1,6 +1,6 @@
 {
   "name": "pdf-lib-patch",
-  "version": "1.17.9",
+  "version": "1.17.10",
   "description": "Create and modify PDF files with JavaScript",
   "author": "Andrew Dillon <andrew.dillon.j@gmail.com>",
   "contributors": [
@@ -92,11 +92,9 @@
     "@pdf-lib/standard-fonts": "^1.0.0",
     "@pdf-lib/upng": "^1.0.1",
     "@types/crypto-js": "^4.0.2",
-    "@types/saslprep": "^1.0.1",
     "@types/saslprep-patch": "github:ktpm489/types-saslprep-patch",
     "crypto-js": "^4.1.1",
     "pako": "^1.0.11",
-    "saslprep": "^1.0.3",
     "saslprep-patch": "^1.0.4",
     "tslib": "^1.11.1"
   },
