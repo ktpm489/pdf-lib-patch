@@ -1,6 +1,6 @@
 {
   "name": "pdf-lib-patch",
-  "version": "1.18.2",
+  "version": "1.18.3",
   "description": "Create and modify PDF files with JavaScript",
   "author": "Andrew Dillon <andrew.dillon.j@gmail.com>",
   "contributors": [
@@ -35,6 +35,7 @@
   "scripts": {
     "release:latest": "yarn publish --tag latest && yarn pack && yarn release:tag",
     "release:next": "yarn publish --tag next",
+    "public" : "npm run public",
     "release:prep": "yarn clean && yarn lint && yarn typecheck && yarn test && yarn build",
     "release:tag": "TAG=\"v$(yarn --silent get:version)\" && git tag $TAG && git push origin $TAG",
     "get:version": "node --eval 'console.log(require(`./package.json`).version)'",

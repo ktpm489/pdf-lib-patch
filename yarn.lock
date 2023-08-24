@@ -826,10 +826,6 @@
   "resolved" "git+ssh://git@github.com/ktpm489/types-saslprep-patch.git#65b66e6c20736241171055e2117375a62258c9ab"
   "version" "1.0.1"
 
-"@types/saslprep@^1.0.1":
-  "resolved" "git+ssh://git@github.com/ktpm489/types-saslprep-patch.git#69845a9b3a097c60853f72651108a44580f95894"
-  "version" "1.0.1"
-
 "@types/stack-utils@^1.0.1":
   "integrity" "sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw=="
   "resolved" "https://registry.npmjs.org/@types/stack-utils/-/stack-utils-1.0.1.tgz"
@@ -3680,13 +3676,6 @@
   "version" "1.0.4"
   dependencies:
     "fflate" "^0.7.3"
-    "sparse-bitfield" "^3.0.3"
-
-"saslprep@^1.0.3":
-  "integrity" "sha512-/MY/PEMbk2SuY5sScONwhUDsV2p77Znkb/q3nSVstq/yQzYJOH/Azh29p9oJLsl3LnQwSvZDKagDGBsBwSooag=="
-  "resolved" "https://registry.npmjs.org/saslprep/-/saslprep-1.0.3.tgz"
-  "version" "1.0.3"
-  dependencies:
     "sparse-bitfield" "^3.0.3"
 
 "saxes@^5.0.0":
