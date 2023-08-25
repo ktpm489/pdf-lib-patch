@@ -93,7 +93,7 @@
     "@pdf-lib/standard-fonts": "^1.0.0",
     "@pdf-lib/upng": "^1.0.1",
     "@types/crypto-js": "^4.0.2",
-    "@types/saslprep-patch": "github:ktpm489/types-saslprep-patch",
+    "@types/saslprep-patch": "git+https://github.com/ktpm489/types-saslprep-patch.git",
     "crypto-js": "^4.1.1",
     "pako": "^1.0.11",
     "saslprep-patch": "^1.0.4",
